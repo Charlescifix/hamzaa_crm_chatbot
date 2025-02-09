@@ -1,0 +1,60 @@
+{
+  "CommonQuestionsAndAnswers": {
+    "InternalProcedures": "Inventory Management workflow, order tracking processes",
+    "AnalyticsReport": "Insights, best practices, case studies",
+    "Hamzaa": {
+      "Title": "Auto Mechanic Repair Shop CRM",
+      "UserManual": "Feature Guide Table of Contents"
+    }
+  },
+  "Introduction": {
+    "About": "Hamzaa is an Auto Repair software designed to help automotive repair shops manage customer relationships, streamline operations, track service history, manage inventory, and improve customer retention through automation.",
+    "KeyBenefits": [
+      "Customer Relationship Management",
+      "Service Tracking",
+      "Automated Reminders",
+      "Inventory Management",
+      "Data-driven Analytics"
+    ],
+    "GettingStarted": {
+      "SystemRequirements": "Ensure your device meets the software's requirements.",
+      "AccountSetup": "Follow the sign-up process to create an account.",
+      "LoggingIn": "Enter credentials to access the system."
+    },
+    "CoreFeatures": [
+      "Customer Management",
+      "Appointment Scheduling",
+      "Inventory Management",
+      "Billing and Invoicing",
+      "Reporting and Analytics",
+      "Software Integrations"
+    ],
+    "AdvancedFeatures": [
+      "Automated Reminders",
+      "Customer Feedback Collection",
+      "Integration with Other Tools"
+    ]
+  },
+  "FAQsAndTroubleshooting": {
+    "PasswordReset": {
+      "Question": "How do I reset my password?",
+      "Answer": "Click 'Forgot Password' on the login page and follow the instructions to reset your password."
+    },
+    "InternetConnectivity": {
+      "Question": "What happens if my internet connection drops?",
+      "Answer": "Hamzaa saves your data in real-time. Any changes will sync once the connection is restored."
+    },
+    "WhatIsHamzaa": {
+      "Question": "What is Hamzaa?",
+      "Answer": "Hamzaa is an Auto Repair software designed to help automotive repair shops manage customer relationships, streamline operations, track service history, manage inventory, and improve customer retention through automation."
+    },
+    "DataSecurity": {
+      "Question": "How secure is the data in Hamzaa?",
+      "Answer": "We follow industry-standard security protocols like encryption and data backups, ensuring every customer and operational data remain protected."
+    },
+    "AnalyticsFeatures": {
+      "Question": "What analytics features are available?",
+      "Answer": "Hamzaa provides dashboards with real-time insights into sales trends, service performance, customer behavior, and financial reports to help you make data-driven decisions."
+    }
+  }
+}
