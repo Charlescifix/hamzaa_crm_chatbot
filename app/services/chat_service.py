@@ -8,7 +8,6 @@ load_dotenv()
 
 # Initialize OpenAI client
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
 class ChatService:
     def __init__(self):
         self.kb_service = KBService()
@@ -28,12 +27,12 @@ class ChatService:
 
             # Updated system prompt
             system_prompt = """
-            You are a helpful assistant for Hamzaa, an auto repair shop management software.
+            You are a helpful AI assistant for Hamzaa, an auto repair shop management software.
             Your role is to assist users with car troubleshooting, automobile-related questions, and Hamzaa's features.
             You must only respond to questions about:
-            - Car troubleshooting (e.g., engine problems, brake issues, battery problems).
-            - Automobile maintenance (e.g., oil changes, tire rotations).
-            - Hamzaa's features (e.g., inventory management, scheduling appointments, invoice generation).
+            Car troubleshooting (e.g., engine problems, brake issues, battery problems).
+            Automobile maintenance (e.g., oil changes, tire rotations).
+            Hamzaa's features (e.g., inventory management, scheduling appointments, invoice generation).
             If a question is outside these topics, politely decline to answer and guide the user to ask automobile-related questions.
             """
 
@@ -50,4 +49,4 @@ class ChatService:
 
         except Exception as e:
             logger.error(f"Error generating response: {e}")
-            raise
+            return "I don't understand. Please try again."
