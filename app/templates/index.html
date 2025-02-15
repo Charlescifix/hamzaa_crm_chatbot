@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hamzaa Chatbot</title>
+</head>
+<body>
+    <h1>Hamzaa Chatbot</h1>
+    <input id="userInput" type="text" placeholder="Ask a question..." />
+    <button onclick="sendMessage()">Send</button>
+    <p id="response"></p>
+
+    <script>
+        async function sendMessage() {
+            let message = document.getElementById("userInput").value;
+            let response = await fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message })
+            });
+            let result = await response.json();
+            document.getElementById("response").innerText = result.response;
+        }
+    </script>
+</body>
+</html>
