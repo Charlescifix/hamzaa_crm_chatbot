@@ -3,6 +3,7 @@ import os
 from logging.handlers import RotatingFileHandler
 from app.config import Config
 
+
 # Create logs directory if it doesn't exist
 if not os.path.exists("logs"):
     os.makedirs("logs")

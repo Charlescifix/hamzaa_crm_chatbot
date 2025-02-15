@@ -4,7 +4,7 @@ from app.services.chat_service import ChatService
 from app.db.database import SessionLocal, engine
 from app.models.chat import ChatHistory
 from sqlalchemy.orm import Session
-from app.utils.logger import logger  # Import the logger
+from app.utils.logger import logger
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
@@ -17,8 +17,8 @@ templates = Jinja2Templates(directory="app/templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
+    logger.debug("Home endpoint called")  # Debug log
     return templates.TemplateResponse("index.html", {"request": request})
-
 
 # Create database tables
 ChatHistory.metadata.create_all(bind=engine)
@@ -35,8 +35,7 @@ def get_db():
 
 @app.post("/chat")
 async def chat(request: ChatRequest, db: Session = Depends(get_db)):
-    logger.info(f"Chat endpoint called with message: {request.message}")  # Log the incoming request
-
+    logger.debug("Chat endpoint called")  # Debug log
     chat_service = ChatService()
     try:
         response = chat_service.get_response(request.message)
@@ -48,10 +47,10 @@ async def chat(request: ChatRequest, db: Session = Depends(get_db)):
         )
         db.add(chat_record)
         db.commit()
-        logger.info("Chat history saved to database")  # Log database save
+        logger.debug("Chat history saved to database")  # Debug log
 
         return {"response": response}
 
     except Exception as e:
-        logger.error(f"Error in chat endpoint: {e}")  # Log errors
+        logger.error(f"Error in chat endpoint: {e}")  # Error log
         raise HTTPException(status_code=500, detail=str(e))
