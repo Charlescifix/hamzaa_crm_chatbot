@@ -2,7 +2,7 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 from app.services.kb_service import KBService
-from app.utils.logger import logger  # Import the logger
+from app.utils.logger import logger
 
 load_dotenv()
 
@@ -14,28 +14,40 @@ class ChatService:
         self.kb_service = KBService()
 
     def get_response(self, message):
-        logger.info(f"Received user message: {message}")  # Log the incoming message
+        logger.info(f"Received user message: {message}")
 
         try:
             # Check knowledge base first
             kb_answer = self.kb_service.get_answer(message)
             if kb_answer:
-                logger.info("Found relevant answer in knowledge base")  # Log KB hit
+                logger.info("Found relevant answer in knowledge base")
                 return kb_answer
 
             # Fallback to OpenAI
-            logger.info("No relevant answer in knowledge base, querying OpenAI...")  # Log OpenAI fallback
+            logger.info("No relevant answer in knowledge base, querying OpenAI...")
+
+            # Updated system prompt
+            system_prompt = """
+            You are a helpful assistant for Hamzaa, an auto repair shop management software.
+            Your role is to assist users with car troubleshooting, automobile-related questions, and Hamzaa's features.
+            You must only respond to questions about:
+            - Car troubleshooting (e.g., engine problems, brake issues, battery problems).
+            - Automobile maintenance (e.g., oil changes, tire rotations).
+            - Hamzaa's features (e.g., inventory management, scheduling appointments, invoice generation).
+            If a question is outside these topics, politely decline to answer and guide the user to ask automobile-related questions.
+            """
+
             response = client.chat.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[
-                    {"role": "system", "content": "You are a helpful assistant for Hamzaa, an auto repair shop management software."},
+                    {"role": "system", "content": system_prompt},  # Updated system prompt
                     {"role": "user", "content": message}
                 ]
             )
             bot_response = response.choices[0].message.content
-            logger.info(f"Generated bot response: {bot_response}")  # Log the bot response
+            logger.info(f"Generated bot response: {bot_response}")
             return bot_response
 
         except Exception as e:
-            logger.error(f"Error generating response: {e}")  # Log errors
+            logger.error(f"Error generating response: {e}")
             raise
